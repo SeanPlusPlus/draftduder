@@ -51,6 +51,7 @@ export const Predict = () => {
   const handleSave = () => {
     if (filledCount < 32) {
       setError(`Fill all 32 slots. You have ${filledCount}.`)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
       return
     }
     setShowModal(true)
