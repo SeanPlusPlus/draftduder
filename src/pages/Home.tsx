@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import { useMessages } from '../hooks/useMessages'
 
 const timeAgo = (ts: string) => {
@@ -15,18 +16,32 @@ export const Home = () => {
 
   return (
     <main>
-      <span className="tag">live</span>
+      <span className="tag">2026 NFL Draft</span>
       <h1>
         draft<br />
         duder<span className="dot">.</span>
       </h1>
-      <p>Push messages from the terminal. They show up here in realtime.</p>
+      <p>
+        10 players. 32 picks. 100 prospects. Predict the first round of the
+        2026 NFL Draft and score points for accuracy.{' '}
+        <Link to="/about" className="inline-link">How scoring works →</Link>
+      </p>
+
+      <div className="card-grid">
+        <Link to="/board" className="card card-link">
+          <h3>Board</h3>
+          <p>Browse the top 100 prospects.</p>
+        </Link>
+        <Link to="/about" className="card card-link">
+          <h3>Scoring</h3>
+          <p>7 pts max per slot. 224 max total.</p>
+        </Link>
+      </div>
 
       <div className="feed">
+        <h3 className="feed-header">Activity</h3>
         {messages.length === 0 && (
-          <div className="feed-empty">
-            No messages yet. Run <code>bun run push "hello"</code> to start.
-          </div>
+          <div className="feed-empty">No activity yet.</div>
         )}
         {messages.map((msg) => (
           <div key={msg.id} className="feed-item">

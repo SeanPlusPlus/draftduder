@@ -154,7 +154,7 @@ main p + p {
   line-height: 1.5;
 }
 
-/* about page */
+/* about / scoring page */
 
 .about-section {
   margin-top: 2rem;
@@ -162,22 +162,88 @@ main p + p {
   border-top: 1px solid var(--border);
 }
 
-.stack-list {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
+.about-section p {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  line-height: 1.7;
 }
 
-.stack-list li {
+.about-section p + p {
+  margin-top: 0.4rem;
+}
+
+.about-section strong {
+  color: var(--text);
+}
+
+.scoring-table {
+  margin-top: 2rem;
+}
+
+.scoring-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.scoring-table th {
   font-family: var(--mono);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--text-dim);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: 0.2rem 0.6rem;
-  border-radius: 3px;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.scoring-table td {
+  font-size: 0.85rem;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.scoring-table td:first-child {
+  font-family: var(--mono);
+  font-weight: 600;
+  color: var(--accent);
+  width: 4rem;
+}
+
+.scoring-table tr:last-child td {
+  color: var(--text-dim);
+}
+
+/* inline link */
+
+.inline-link {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.inline-link:hover {
+  opacity: 0.8;
+}
+
+/* card link */
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* feed header */
+
+.feed-header {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.75rem;
 }
 
 /* feed */
