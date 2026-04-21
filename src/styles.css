@@ -180,6 +180,68 @@ main p + p {
   border-radius: 3px;
 }
 
+/* feed */
+
+.feed {
+  margin-top: 2.5rem;
+}
+
+.feed-empty {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  padding: 1.5rem;
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  text-align: center;
+}
+
+.feed-empty code {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+}
+
+.feed-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+  animation: feed-in 0.3s ease-out;
+}
+
+.feed-item:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.feed-content {
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+.feed-time {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@keyframes feed-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* footer vibe */
 
 .footer {

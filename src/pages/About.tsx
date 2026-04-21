@@ -25,6 +25,6 @@ export const About = () => (
       </ul>
     </div>
 
-    <div className="footer">¯\_(ツ)_/¯</div>
+    <div className="footer">v{__APP_VERSION__}</div>
   </main>
 )

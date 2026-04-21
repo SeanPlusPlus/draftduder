@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router'
 import { AppRoutes } from './App'
 
 describe('App', () => {
-  test('renders hello world on home page', () => {
+  test('renders home page', () => {
     render(
       <MemoryRouter initialEntries={['/']}>
         <AppRoutes />

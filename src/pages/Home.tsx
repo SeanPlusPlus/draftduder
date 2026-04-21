@@ -1,26 +1,42 @@
-export const Home = () => (
-  <main>
-    <span className="tag">v0.0.1</span>
-    <h1>
-      draft<br />
-      duder<span className="dot">.</span>
-    </h1>
-    <p>
-      A scratch pad for ideas that probably won't survive the weekend. Built
-      with whatever felt right at the time.
-    </p>
+import { useMessages } from '../hooks/useMessages'
 
-    <div className="card-grid">
-      <div className="card">
-        <h3>Stack</h3>
-        <p>React, TypeScript, Bun, Vite. No opinions about state management yet.</p>
-      </div>
-      <div className="card">
-        <h3>Status</h3>
-        <p>Exists. Runs. Tests pass. That's the bar for now.</p>
-      </div>
-    </div>
+const timeAgo = (ts: string) => {
+  const seconds = Math.floor((Date.now() - new Date(ts).getTime()) / 1000)
+  if (seconds < 60) return 'just now'
+  const minutes = Math.floor(seconds / 60)
+  if (minutes < 60) return `${minutes}m ago`
+  const hours = Math.floor(minutes / 60)
+  if (hours < 24) return `${hours}h ago`
+  return `${Math.floor(hours / 24)}d ago`
+}
 
-    <div className="footer">built for no particular reason</div>
-  </main>
-)
+export const Home = () => {
+  const messages = useMessages()
+
+  return (
+    <main>
+      <span className="tag">live</span>
+      <h1>
+        draft<br />
+        duder<span className="dot">.</span>
+      </h1>
+      <p>Push messages from the terminal. They show up here in realtime.</p>
+
+      <div className="feed">
+        {messages.length === 0 && (
+          <div className="feed-empty">
+            No messages yet. Run <code>bun run push "hello"</code> to start.
+          </div>
+        )}
+        {messages.map((msg) => (
+          <div key={msg.id} className="feed-item">
+            <span className="feed-content">{msg.content}</span>
+            <span className="feed-time">{timeAgo(msg.created_at)}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="footer">v{__APP_VERSION__} — realtime via supabase</div>
+    </main>
+  )
+}
