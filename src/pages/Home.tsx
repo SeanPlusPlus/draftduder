@@ -13,10 +13,16 @@ export const Home = () => (
       <Link to="/about" className="inline-link">How scoring works →</Link>
     </p>
 
+    <Link to="/predict" className="predict-cta">Make Your Picks →</Link>
+
     <div className="card-grid">
       <Link to="/board" className="card card-link">
         <h3>Board</h3>
         <p>Browse the top 100 prospects.</p>
+      </Link>
+      <Link to="/order" className="card card-link">
+        <h3>Order</h3>
+        <p>See the 32 first-round slots.</p>
       </Link>
       <Link to="/about" className="card card-link">
         <h3>Scoring</h3>
