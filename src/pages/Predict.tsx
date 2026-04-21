@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router'
 import { useDraftOrder } from '../hooks/useDraftOrder'
 import { type Prospect, useProspects } from '../hooks/useProspects'
 import { supabase } from '../lib/supabase'
@@ -60,6 +61,19 @@ export const Predict = () => {
     if (!name) return
 
     setSaving(true)
+
+    const { count } = await supabase
+      .from('predictions')
+      .select('*', { count: 'exact', head: true })
+      .eq('player_name', name)
+
+    if (count && count > 0) {
+      setSaving(false)
+      setError(`"${name}" already has a submission. Use a different name.`)
+      setShowModal(false)
+      return
+    }
+
     const rows = Object.entries(slots).map(([slot, prospect]) => ({
       player_name: name,
       slot: Number(slot),
@@ -133,6 +147,10 @@ export const Predict = () => {
           })}
         </div>
 
+        <Link to="/leaderboard" className="predict-cta">
+          See the Leaderboard
+        </Link>
+
         <div className="footer">v{__APP_VERSION__}</div>
       </main>
     )
@@ -150,9 +168,11 @@ export const Predict = () => {
         <strong>{filledCount}/32</strong>
       </p>
 
-      <button type="button" className="predict-random" onClick={handleRandomFill}>
-        Randomize (QA)
-      </button>
+      {import.meta.env.DEV && (
+        <button type="button" className="predict-random" onClick={handleRandomFill}>
+          Randomize (QA)
+        </button>
+      )}
 
       {error && <div className="predict-error">{error}</div>}
 
