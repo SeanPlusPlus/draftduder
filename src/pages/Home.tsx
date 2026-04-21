@@ -22,8 +22,8 @@ export const Home = () => {
         duder<span className="dot">.</span>
       </h1>
       <p>
-        10 players. 32 picks. 100 prospects. Predict the first round of the
-        2026 NFL Draft and score points for accuracy.{' '}
+        You and your friends predict the first round of the 2026 NFL Draft.
+        32 picks. 100 prospects. Score points for accuracy.{' '}
         <Link to="/about" className="inline-link">How scoring works →</Link>
       </p>
 

@@ -6,7 +6,7 @@ export const About = () => (
     </h1>
 
     <p>
-      10 players predict the 2026 NFL Draft first round. Pick 1 prospect for
+      Each player predicts the 2026 NFL Draft first round. Pick 1 prospect for
       each of the 32 slots from a universe of 100 players. After the draft,
       each slot scores independently.
     </p>
