@@ -20,7 +20,7 @@ export const Board = () => {
 
   return (
     <main>
-      <span className="tag">2025 NFL Draft</span>
+      <span className="tag">2026 NFL Draft</span>
       <h1>
         Best<br />
         Available<span className="dot">.</span>
