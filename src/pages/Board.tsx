@@ -28,11 +28,11 @@ export const Board = () => {
       <p>ESPN's top prospects — scraped, stored, rendered.</p>
 
       <div className="board">
-        {loading && <div className="feed-empty">Loading...</div>}
-        {!loading && prospects.length === 0 && (
+        {loading ? (
+          <div className="feed-empty">Loading...</div>
+        ) : prospects.length === 0 ? (
           <div className="feed-empty">No prospects loaded yet.</div>
-        )}
-        {prospects.map((p) => (
+        ) : prospects.map((p) => (
           <div key={p.id} className="prospect-row">
             <span className="prospect-rank">{p.rank}</span>
             <img
@@ -54,6 +54,7 @@ export const Board = () => {
           </div>
         ))}
       </div>
+
 
       <div className="footer">v{__APP_VERSION__} — data via espn</div>
     </main>

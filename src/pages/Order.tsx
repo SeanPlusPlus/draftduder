@@ -13,11 +13,11 @@ export const Order = () => {
       <p>The 32 first-round picks of the 2026 NFL Draft.</p>
 
       <div className="board">
-        {loading && <div className="feed-empty">Loading...</div>}
-        {!loading && picks.length === 0 && (
+        {loading ? (
+          <div className="feed-empty">Loading...</div>
+        ) : picks.length === 0 ? (
           <div className="feed-empty">No draft order loaded yet.</div>
-        )}
-        {picks.map((p) => (
+        ) : picks.map((p) => (
           <div key={p.id} className="prospect-row">
             <span className="prospect-rank">{p.pick}</span>
             <img
