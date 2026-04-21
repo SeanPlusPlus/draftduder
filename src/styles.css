@@ -45,7 +45,6 @@ nav {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 0.25rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid var(--border);
@@ -570,6 +569,7 @@ main p + p {
 
 @media (max-width: 600px) {
   nav {
+    justify-content: center;
     gap: 0.15rem;
   }
 
