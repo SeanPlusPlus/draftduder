@@ -38,6 +38,9 @@ export const About = () => (
       <p>Highest score wins.</p>
     </div>
 
-    <div className="footer">v{__APP_VERSION__}</div>
+    <div className="footer">
+      v{__APP_VERSION__} — no more squared penalties, no more bickering about algos.
+      we kept it simple this year.
+    </div>
   </main>
 )
