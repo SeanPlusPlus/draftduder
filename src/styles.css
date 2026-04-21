@@ -34,13 +34,9 @@ body {
 }
 
 #root {
-  max-width: 640px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 3rem 1.5rem;
-}
-
-#root:has(.predict-page) {
-  max-width: 900px;
 }
 
 /* nav */
@@ -416,6 +412,21 @@ main p + p {
   border-top: 1px solid var(--border);
 }
 
+.leaderboard-chevron {
+  font-family: var(--mono);
+  font-size: 1rem;
+  color: var(--text-dim);
+  transition: transform 0.2s ease, color 0.2s;
+  flex-shrink: 0;
+  width: 0.75rem;
+  display: inline-block;
+}
+
+.leaderboard-chevron.open {
+  transform: rotate(90deg);
+  color: var(--accent);
+}
+
 .leaderboard-row {
   display: flex;
   align-items: center;
@@ -427,6 +438,10 @@ main p + p {
 
 .leaderboard-row:hover {
   background: var(--surface);
+}
+
+.leaderboard-row:hover .leaderboard-chevron {
+  color: var(--accent);
 }
 
 .leaderboard-name {
@@ -457,6 +472,18 @@ main p + p {
 .leaderboard-entry.expanded .board {
   margin-top: 0;
   padding: 0.5rem 0;
+  animation: slide-down 0.2s ease-out;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .leaderboard-entry.expanded .prospect-row:first-child {

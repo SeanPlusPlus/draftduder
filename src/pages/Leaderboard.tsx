@@ -79,6 +79,7 @@ export const Leaderboard = () => {
                 setExpanded(expanded === entry.player_name ? null : entry.player_name)
               }
             >
+              <span className={`leaderboard-chevron ${expanded === entry.player_name ? 'open' : ''}`}>›</span>
               <span className="leaderboard-name">{entry.player_name}</span>
               <span className="leaderboard-meta">
                 {entry.picks.length} picks · {timeAgo(entry.created_at)}
