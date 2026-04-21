@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDraftOrder } from '../hooks/useDraftOrder'
-import { type Entry, useLeaderboard } from '../hooks/useLeaderboard'
+import { type Entry, type EntryType, useLeaderboard } from '../hooks/useLeaderboard'
 
 const timeAgo = (ts: string) => {
   const seconds = Math.floor((Date.now() - new Date(ts).getTime()) / 1000)
@@ -47,9 +47,16 @@ const EntryDetail = ({ entry }: { entry: Entry }) => {
   )
 }
 
+type Filter = 'all' | EntryType
+
 export const Leaderboard = () => {
   const { entries, loading } = useLeaderboard()
   const [expanded, setExpanded] = useState<string | null>(null)
+  const [filter, setFilter] = useState<Filter>('all')
+
+  const filtered = filter === 'all' ? entries : entries.filter((e) => e.entry_type === filter)
+  const humanCount = entries.filter((e) => e.entry_type === 'human').length
+  const robotCount = entries.filter((e) => e.entry_type === 'robot').length
 
   return (
     <main>
@@ -63,12 +70,24 @@ export const Leaderboard = () => {
         Scores go live when the draft starts.
       </p>
 
+      <div className="leaderboard-filters">
+        <button type="button" className={`leaderboard-filter ${filter === 'all' ? 'active' : ''}`} onClick={() => setFilter('all')}>
+          All ({entries.length})
+        </button>
+        <button type="button" className={`leaderboard-filter ${filter === 'human' ? 'active' : ''}`} onClick={() => setFilter('human')}>
+          🧑 Humans ({humanCount})
+        </button>
+        <button type="button" className={`leaderboard-filter ${filter === 'robot' ? 'active' : ''}`} onClick={() => setFilter('robot')}>
+          🤖 Bots ({robotCount})
+        </button>
+      </div>
+
       <div className="board">
         {loading && <div className="feed-empty">Loading...</div>}
-        {!loading && entries.length === 0 && (
+        {!loading && filtered.length === 0 && (
           <div className="feed-empty">No entries yet.</div>
         )}
-        {entries.map((entry) => (
+        {filtered.map((entry) => (
           <div
             key={entry.player_name}
             className={`leaderboard-entry ${expanded === entry.player_name ? 'expanded' : ''}`}
@@ -80,7 +99,9 @@ export const Leaderboard = () => {
               }
             >
               <span className={`leaderboard-chevron ${expanded === entry.player_name ? 'open' : ''}`}>›</span>
-              <span className="leaderboard-name">{entry.player_name}</span>
+              <span className="leaderboard-name">
+                {entry.entry_type === 'robot' ? '🤖 ' : ''}{entry.player_name}
+              </span>
               <span className="leaderboard-meta">
                 {entry.picks.length} picks · {timeAgo(entry.created_at)}
               </span>

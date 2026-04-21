@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase'
 
+export type EntryType = 'human' | 'robot'
+
 export type Entry = {
   player_name: string
   created_at: string
+  entry_type: EntryType
   picks: {
     slot: number
     prospect_name: string
@@ -20,7 +23,7 @@ export const useLeaderboard = () => {
   useEffect(() => {
     supabase
       .from('predictions')
-      .select('player_name, slot, created_at, prospects(name, position, college, logo_url)')
+      .select('player_name, slot, created_at, entry_type, prospects(name, position, college, logo_url)')
       .order('slot', { ascending: true })
       .then(({ data }) => {
         if (!data) {
@@ -35,6 +38,7 @@ export const useLeaderboard = () => {
             grouped[name] = {
               player_name: name,
               created_at: row.created_at,
+              entry_type: (row.entry_type as EntryType) || 'human',
               picks: [],
             }
           }
