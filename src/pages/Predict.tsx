@@ -79,7 +79,21 @@ export const Predict = () => {
     setShowModal(false)
   }
 
+  const handleRandomFill = () => {
+    const shuffled = [...prospects].sort(() => Math.random() - 0.5)
+    const newSlots: Record<number, Prospect> = {}
+    for (const pick of draftOrder) {
+      const available = shuffled.find((p) => !Object.values(newSlots).some((s) => s.id === p.id))
+      if (available) newSlots[pick.pick] = available
+    }
+    setSlots(newSlots)
+    setError('')
+  }
+
   if (saved) {
+    const savedSlots = Object.entries(slots)
+      .sort(([a], [b]) => Number(a) - Number(b))
+
     return (
       <main>
         <span className="tag">Locked in</span>
@@ -89,6 +103,36 @@ export const Predict = () => {
         <p>
           {playerName}'s mock draft is saved. Good luck.
         </p>
+
+        <div className="board">
+          {savedSlots.map(([slot, prospect]) => {
+            const pick = draftOrder.find((d) => d.pick === Number(slot))
+            return (
+              <div key={slot} className="prospect-row">
+                <span className="prospect-rank">{slot}</span>
+                {pick && (
+                  <img
+                    className="prospect-logo"
+                    src={pick.logo_url}
+                    alt={pick.team}
+                    loading="lazy"
+                  />
+                )}
+                <img
+                  className="prospect-logo"
+                  src={prospect.logo_url}
+                  alt={prospect.college}
+                  loading="lazy"
+                />
+                <div className="prospect-info">
+                  <span className="prospect-name">{prospect.name}</span>
+                  <span className="prospect-college">{prospect.position} · {prospect.college}</span>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
         <div className="footer">v{__APP_VERSION__}</div>
       </main>
     )
@@ -105,6 +149,10 @@ export const Predict = () => {
         Tap a prospect, then tap a slot to place them.{' '}
         <strong>{filledCount}/32</strong>
       </p>
+
+      <button type="button" className="predict-random" onClick={handleRandomFill}>
+        Randomize (QA)
+      </button>
 
       {error && <div className="predict-error">{error}</div>}
 
