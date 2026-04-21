@@ -1,6 +1,6 @@
 {
   "name": "draftduder",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,7 +11,8 @@
     "lint": "biome check .",
     "lint:fix": "biome check --fix .",
     "format": "prettier --write .",
-    "push": "bun run scripts/push.ts"
+    "push": "bun run scripts/push.ts",
+    "seed:prospects": "bun run scripts/seed-prospects.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.104.0",

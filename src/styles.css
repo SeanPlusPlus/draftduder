@@ -242,6 +242,71 @@ main p + p {
   }
 }
 
+/* board / prospects */
+
+.board {
+  margin-top: 2.5rem;
+}
+
+.prospect-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.prospect-row:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.prospect-rank {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  min-width: 1.8rem;
+  text-align: right;
+}
+
+.prospect-logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  background: var(--surface);
+  flex-shrink: 0;
+}
+
+.prospect-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.prospect-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.prospect-college {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.prospect-pos {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
 /* footer vibe */
 
 .footer {
