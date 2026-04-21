@@ -406,6 +406,63 @@ main p + p {
   flex-shrink: 0;
 }
 
+/* leaderboard */
+
+.leaderboard-entry {
+  border-bottom: 1px solid var(--border);
+}
+
+.leaderboard-entry:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.leaderboard-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.leaderboard-row:hover {
+  background: var(--surface);
+}
+
+.leaderboard-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  flex: 1;
+}
+
+.leaderboard-meta {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+.leaderboard-score {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  min-width: 2.5rem;
+  text-align: right;
+}
+
+.leaderboard-entry.expanded .leaderboard-row {
+  border-bottom: 1px solid var(--border);
+}
+
+.leaderboard-entry.expanded .board {
+  margin-top: 0;
+  padding: 0.5rem 0;
+}
+
+.leaderboard-entry.expanded .prospect-row:first-child {
+  border-top: none;
+}
+
 /* predict page */
 
 .predict-page {
