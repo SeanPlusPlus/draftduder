@@ -7,8 +7,8 @@ export const About = () => (
 
     <p>
       Each player predicts the 2026 NFL Draft first round. Pick 1 prospect for
-      each of the 32 slots from a universe of 100 players. After the draft,
-      each slot scores independently.
+      each of the 32 slots from a universe of 100 players. As each pick comes
+      in live, your slots score in realtime.
     </p>
 
     <div className="scoring-table">
