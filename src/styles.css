@@ -369,6 +369,12 @@ main p + p {
   flex-shrink: 0;
 }
 
+.college-logo {
+  width: 20px;
+  height: 20px;
+  opacity: 0.45;
+}
+
 .prospect-info {
   flex: 1;
   min-width: 0;

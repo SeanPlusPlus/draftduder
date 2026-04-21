@@ -119,7 +119,7 @@ export const Predict = () => {
                   />
                 )}
                 <img
-                  className="prospect-logo"
+                  className="prospect-logo college-logo"
                   src={prospect.logo_url}
                   alt={prospect.college}
                   loading="lazy"
