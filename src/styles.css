@@ -44,6 +44,8 @@ body {
 nav {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.25rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid var(--border);
@@ -567,6 +569,18 @@ main p + p {
 }
 
 @media (max-width: 600px) {
+  nav {
+    gap: 0.15rem;
+  }
+
+  nav .sep {
+    display: none;
+  }
+
+  nav a {
+    padding: 0.3rem 0.45rem;
+  }
+
   .predict-layout {
     grid-template-columns: 1fr;
   }
