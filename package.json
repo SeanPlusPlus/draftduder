@@ -12,7 +12,8 @@
     "lint:fix": "biome check --fix .",
     "format": "prettier --write .",
     "push": "bun run scripts/push.ts",
-    "seed:prospects": "bun run scripts/seed-prospects.ts"
+    "seed:prospects": "bun run scripts/seed-prospects.ts",
+    "seed:actual": "bun run scripts/seed-actual-picks.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.104.0",

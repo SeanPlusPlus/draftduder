@@ -488,6 +488,13 @@ main p + p {
   color: var(--text-dim);
 }
 
+.leaderboard-rank {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  min-width: 1.5rem;
+}
+
 .leaderboard-score {
   font-family: var(--mono);
   font-size: 0.85rem;
@@ -495,6 +502,10 @@ main p + p {
   color: var(--text-dim);
   min-width: 2.5rem;
   text-align: right;
+}
+
+.leaderboard-score.live {
+  color: var(--accent);
 }
 
 .leaderboard-entry.expanded .leaderboard-row {
@@ -520,6 +531,58 @@ main p + p {
 
 .leaderboard-entry.expanded .prospect-row:first-child {
   border-top: none;
+}
+
+/* per-pick scoring */
+
+.pick-score {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.pick-score.exact {
+  color: #2ecc71;
+  background: #2ecc7120;
+}
+
+.pick-score.close {
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.pick-score.far {
+  color: #e67e22;
+  background: #e67e2220;
+}
+
+.pick-score.miss {
+  color: var(--text-dim);
+  background: transparent;
+}
+
+.row-exact {
+  border-left: 2px solid #2ecc71;
+  padding-left: calc(0.6rem - 2px);
+}
+
+.row-close {
+  border-left: 2px solid var(--accent);
+  padding-left: calc(0.6rem - 2px);
+}
+
+.row-far {
+  border-left: 2px solid #e67e22;
+  padding-left: calc(0.6rem - 2px);
+}
+
+.row-miss {
+  border-left: 2px solid var(--border);
+  padding-left: calc(0.6rem - 2px);
+  opacity: 0.6;
 }
 
 /* predict page */

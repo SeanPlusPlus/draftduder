@@ -3,17 +3,20 @@ import { supabase } from '../lib/supabase'
 
 export type EntryType = 'human' | 'robot'
 
+export type EntryPick = {
+  slot: number
+  prospect_id: string
+  prospect_name: string
+  prospect_position: string
+  prospect_college: string
+  prospect_logo_url: string
+}
+
 export type Entry = {
   player_name: string
   created_at: string
   entry_type: EntryType
-  picks: {
-    slot: number
-    prospect_name: string
-    prospect_position: string
-    prospect_college: string
-    prospect_logo_url: string
-  }[]
+  picks: EntryPick[]
 }
 
 export const useLeaderboard = () => {
@@ -23,7 +26,7 @@ export const useLeaderboard = () => {
   useEffect(() => {
     supabase
       .from('predictions')
-      .select('player_name, slot, created_at, entry_type, prospects(name, position, college, logo_url)')
+      .select('player_name, slot, created_at, entry_type, prospect_id, prospects(name, position, college, logo_url)')
       .order('slot', { ascending: true })
       .then(({ data }) => {
         if (!data) {
@@ -50,6 +53,7 @@ export const useLeaderboard = () => {
           }
           grouped[name].picks.push({
             slot: row.slot,
+            prospect_id: row.prospect_id,
             prospect_name: prospect.name,
             prospect_position: prospect.position,
             prospect_college: prospect.college,
