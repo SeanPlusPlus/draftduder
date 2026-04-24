@@ -1,6 +1,6 @@
 {
   "name": "draftduder",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "private": true,
   "type": "module",
   "scripts": {
@@ -13,7 +13,8 @@
     "format": "prettier --write .",
     "push": "bun run scripts/push.ts",
     "seed:prospects": "bun run scripts/seed-prospects.ts",
-    "seed:actual": "bun run scripts/seed-actual-picks.ts"
+    "seed:actual": "bun run scripts/seed-actual-picks.ts",
+    "pick": "bun run scripts/insert-pick.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.104.0",
