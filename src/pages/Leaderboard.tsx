@@ -43,11 +43,17 @@ const EntryDetail = ({
       {entry.picks.map((pick, i) => {
         const team = draftOrder.find((d) => d.pick === pick.slot)
         const ps = scored?.pickScores[i]
-        const isScored = ps && actuals.has(pick.prospect_id)
+        const prospectDrafted = ps && actuals.has(pick.prospect_id)
+        const slotFilled = actuals.size >= pick.slot
+        const isScored = prospectDrafted || slotFilled
+        const points = prospectDrafted ? ps.points : 0
+        const rowCls = isScored
+          ? points === 7 ? 'row-exact' : points >= 5 ? 'row-close' : points >= 1 ? 'row-far' : 'row-miss'
+          : ''
         return (
           <div
             key={pick.slot}
-            className={`prospect-row ${isScored ? (ps.points === 7 ? 'row-exact' : ps.points >= 5 ? 'row-close' : ps.points >= 1 ? 'row-far' : 'row-miss') : ''}`}
+            className={`prospect-row ${rowCls}`}
           >
             <span className="prospect-rank">{pick.slot}</span>
             {team && (
@@ -68,12 +74,15 @@ const EntryDetail = ({
               <span className="prospect-name">{pick.prospect_name}</span>
               <span className="prospect-college">
                 {pick.prospect_position} · {pick.prospect_college}
-                {isScored && ps.actualPick !== null && ps.actualPick !== pick.slot && (
+                {prospectDrafted && ps.actualPick !== null && ps.actualPick !== pick.slot && (
                   <> · went #{ps.actualPick}</>
+                )}
+                {!prospectDrafted && slotFilled && (
+                  <> · undrafted</>
                 )}
               </span>
             </div>
-            {isScored && <PickScoreBadge points={ps.points} />}
+            {isScored && <PickScoreBadge points={points} />}
           </div>
         )
       })}
