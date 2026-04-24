@@ -100,14 +100,23 @@ export const Leaderboard = () => {
       )
       return { ...entry, score: total }
     })
-    // Sort: scored entries by score desc, unscored by created_at
+    // Sort: scored entries by score desc, ties broken by earliest submission
     return withScores.sort((a, b) => {
-      if (a.score !== null && b.score !== null) return b.score - a.score
+      if (a.score !== null && b.score !== null) {
+        if (a.score !== b.score) return b.score - a.score
+        return new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+      }
       if (a.score !== null) return -1
       if (b.score !== null) return 1
       return new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
     })
   }, [entries, actuals, draftStarted])
+
+  const rankMap = useMemo(() => {
+    const map = new Map<string, number>()
+    scored.forEach((e, i) => map.set(e.player_name, i + 1))
+    return map
+  }, [scored])
 
   const filtered = filter === 'all' ? scored : scored.filter((e) => e.entry_type === filter)
   const humanCount = entries.filter((e) => e.entry_type === 'human').length
@@ -143,7 +152,7 @@ export const Leaderboard = () => {
         {!loading && filtered.length === 0 && (
           <div className="feed-empty">No entries yet.</div>
         )}
-        {filtered.map((entry, rank) => (
+        {filtered.map((entry) => (
           <div
             key={entry.player_name}
             className={`leaderboard-entry ${expanded === entry.player_name ? 'expanded' : ''}`}
@@ -156,7 +165,7 @@ export const Leaderboard = () => {
             >
               <span className={`leaderboard-chevron ${expanded === entry.player_name ? 'open' : ''}`}>›</span>
               {draftStarted && (
-                <span className="leaderboard-rank">#{rank + 1}</span>
+                <span className="leaderboard-rank">#{rankMap.get(entry.player_name)}</span>
               )}
               <span className="leaderboard-name">
                 {entry.entry_type === 'robot' ? '🤖 ' : ''}{entry.player_name}

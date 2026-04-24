@@ -9,4 +9,5 @@ create table actual_picks (
 alter table actual_picks enable row level security;
 create policy "Anyone can read" on actual_picks for select using (true);
 create policy "Anyone can insert" on actual_picks for insert with check (true);
+create policy "Anyone can update" on actual_picks for update using (true) with check (true);
 alter publication supabase_realtime add table actual_picks;
